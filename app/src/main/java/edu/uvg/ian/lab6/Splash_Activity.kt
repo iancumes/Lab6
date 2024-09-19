@@ -56,7 +56,7 @@ fun SplashScreen() {
             modifier = Modifier.fillMaxSize()
         )
 
-        // Superposici√≥n roja
+        // Superposición roja
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -87,10 +87,10 @@ fun SplashScreen() {
     }
 }
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview() {
     Lab6Theme {
         SplashScreen()
     }
-}
+}*/

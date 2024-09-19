@@ -1,6 +1,5 @@
 package edu.uvg.ian.lab6
 
-
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -51,7 +50,7 @@ fun PrimeRibRoastScreen() {
                 title = { Text(text = "Prime Rib Roast", fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = {
-                        // Acci√≥n para ir a MenuActivity
+                        // Acción para ir a MenuActivity
 
                         context.startActivity(Intent(context, MenuActivity::class.java))
                     }) {
@@ -72,7 +71,7 @@ fun PrimeRibRoastScreen() {
                 .padding(0.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Secci√≥n de la Imagen
+            // Sección de la Imagen
             item {
                 Image(
                     painter = painterResource(id = R.drawable.costilla), // Reemplaza con tu recurso de imagen
@@ -83,7 +82,7 @@ fun PrimeRibRoastScreen() {
                         .height(300.dp) // Establecer la altura de la imagen
                 )
 
-                // Secci√≥n de estrellas de calificaci√≥n
+                // Sección de estrellas de calificación
                 Row(
                     horizontalArrangement = Arrangement.Center,
                     modifier = Modifier
@@ -104,7 +103,7 @@ fun PrimeRibRoastScreen() {
                     )
                 }
 
-                // Secci√≥n de t√≠tulo y descripci√≥n
+                // Sección de título y descripción
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -127,7 +126,7 @@ fun PrimeRibRoastScreen() {
                 }
             }
 
-            // Secci√≥n de lista de compras con icono redondeado
+            // Sección de lista de compras con icono redondeado
             item {
                 Card(
                     modifier = Modifier
@@ -144,7 +143,7 @@ fun PrimeRibRoastScreen() {
                                 .align(Alignment.CenterHorizontally)
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.shopi), // Reemplaza con el √≠cono
+                                painter = painterResource(id = R.drawable.shopi), // Reemplaza con el ícono
                                 contentDescription = "Lock Icon",
                                 modifier = Modifier
                                     .size(90.dp)
@@ -167,7 +166,7 @@ fun PrimeRibRoastScreen() {
                 }
             }
 
-            // Secci√≥n de preparaci√≥n
+            // Sección de preparación
             item {
                 Card(
                     modifier = Modifier
@@ -184,7 +183,7 @@ fun PrimeRibRoastScreen() {
                                 .align(Alignment.CenterHorizontally)
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.cook), // Reemplaza con el √≠cono de cocinar
+                                painter = painterResource(id = R.drawable.cook), // Reemplaza con el ícono de cocinar
                                 contentDescription = "Cooking Icon",
                                 modifier = Modifier
                                     .size(32.dp)
@@ -193,7 +192,7 @@ fun PrimeRibRoastScreen() {
                         }
                         PreparationSection(
                             "PREPARATION", listOf(
-                                "Preheat oven to 350¬∞F. Let roast stand at room temperature for 1 hour.",
+                                "Preheat oven to 350°F. Let roast stand at room temperature for 1 hour.",
                                 "In a small saucepan, boil balsamic vinegar until it reduces to 1/4 cup (about 3 minutes).",
                                 "Finely mince parsley, mix with garlic, salt, and pepper, and spread over roast.",
                                 "After slicing the roast, add any accumulated meat juices to the balsamic sauce. Serve the meat slices on warmed plates with balsamic sauce on the side."

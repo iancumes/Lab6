@@ -1,5 +1,5 @@
 package edu.uvg.ian.lab6
-
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -17,15 +19,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import edu.uvg.ian.lab6p.R
 
-class MainActivity : ComponentActivity() {
+class RecipeCompleteActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -36,40 +38,53 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun YouDidItPopup() {
+    val context = LocalContext.current
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0x80000000)) // Background overlay with transparency
+            .background(Color(0x80000000)) // Fondo semi-transparente
     ) {
         Card(
             shape = RoundedCornerShape(16.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White),
             modifier = Modifier
-                .fillMaxWidth(0.8f) // Popup width (80% of the screen)
+                .fillMaxWidth(0.8f) // Ancho de la tarjeta (80% del ancho de la pantalla)
                 .padding(16.dp)
         ) {
             Column(
                 modifier = Modifier.padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Close button (X)
-                Box(
-                    contentAlignment = Alignment.TopEnd,
-                    modifier = Modifier.fillMaxWidth()
+                // Fila para el menú y el botón de cerrar (X)
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    IconButton(onClick = { /* Close the dialog action */ }) {
+                    // Botón de menú (izquierda)
+                    IconButton(onClick = {
+                        // Acción para ir a MenuActivity
+
+                        context.startActivity(Intent(context, MenuActivity::class.java))
+                    }) {
                         Icon(
-                            painter = painterResource(id = R.drawable.lasagna), // Replace with your close icon
-                            contentDescription = "Close",
-                            tint = Color.Black
+                            imageVector = Icons.Default.Menu,
+                            contentDescription = "Menu Icon"
                         )
+                    }
+
+                    // Botón de cerrar (derecha)
+                    IconButton(onClick = { /* Acción para cerrar el popup */ }) {
+                        Icon(
+                            imageVector = Icons.Filled.Close,
+                            contentDescription = "Close Icon")
                     }
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Title
+                // Título
                 Text(
                     text = "YOU DID IT!",
                     fontWeight = FontWeight.Bold,
@@ -80,7 +95,7 @@ fun YouDidItPopup() {
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Subtitle
+                // Subtítulo
                 Text(
                     text = "Let your friends know about it",
                     fontSize = 16.sp,
@@ -90,21 +105,21 @@ fun YouDidItPopup() {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Social Media Icons Row
+                // Fila de íconos de redes sociales
                 Row(
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    SocialMediaIcon(R.drawable.lasagna)
-                    SocialMediaIcon(R.drawable.lasagna)
-                    SocialMediaIcon(R.drawable.lasagna)
-                    SocialMediaIcon(R.drawable.lasagna)
+                    SocialMediaIcon(R.drawable.insta)
+                    SocialMediaIcon(R.drawable.facebook)
+                    SocialMediaIcon(R.drawable.x)
+                    SocialMediaIcon(R.drawable.discord)
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Leave a Review
+                // Texto para dejar una reseña
                 Text(
                     text = "Leave a review",
                     fontSize = 16.sp,
@@ -114,7 +129,7 @@ fun YouDidItPopup() {
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Star rating (Static)
+                // Fila de estrellas (calificación)
                 Row(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
@@ -126,6 +141,7 @@ fun YouDidItPopup() {
                             contentDescription = "Star",
                             tint = MaterialTheme.colorScheme.primary
                         )
+
                     }
                 }
             }
@@ -141,13 +157,13 @@ fun SocialMediaIcon(iconRes: Int) {
         modifier = Modifier
             .size(48.dp)
             .clip(CircleShape)
-            .background(Color(0xFFFF6F61)) // Red-orange background
+            .background(Color(0xFFFF6F61)) // Fondo rojo-anaranjado
             .padding(12.dp),
         contentScale = ContentScale.Crop
     )
 }
 
-// Add the preview function
+// Vista previa de la ventana emergente
 @Preview(showBackground = true)
 @Composable
 fun PreviewYouDidItPopup() {
